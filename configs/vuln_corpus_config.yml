@@ -70,7 +70,7 @@ features:
 # Corpus function details (start_address:function_name:verification_method:category)
 target_funcs:
   # Examples to show corpus function definitions
-  "/home/chkup/Desktop/cases/bin_corpus/httpd":
+  "/opt/firmware/bin-root/web/main/softup.htm":
     - 004c2f90:MD5_Update:MD5:Improper_Integrity # Intergrity (w/o authenticity) verification
     - 004e80e8:getProductId:Protected:Proper_Compatibility # Compatiablity verification
     - 004e80f8:getProductVer:Protected:Proper_Freshness # Freshness verification

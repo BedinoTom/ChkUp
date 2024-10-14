@@ -64,6 +64,8 @@ class UFGConstructor:
             for program in path_dict[key]:
                 filename = program.split("/")[-1]
                 program_type = path_dict[key][program]["filetype"]
+                if program_type == 'htm' or program_type == 'shtml':
+                    program_type = 'html'
                 
                 ipc_keywords = []
                 if path_dict[key][program]["keywords"]:
@@ -306,13 +308,14 @@ class UFGConstructor:
                     cfgs[-1] = (prev_cfg[0], prev_cfg[1], prev_cfg[2], prev_cfg[3], prev_conn_nodes)
                     cfgs.append((program, program_type, cfg, curr_conn_nodes, []))
             
-            ending_program = cfgs[-1][0] 
-            reboot_keywords = path_dict[key][ending_program]["function"]["reboot"]                      
-            # build the ufgs
-            # also, pass the reboot lists to this function
-            ufg, ufg_entry_node, ufg_reboot_nodes = self.connect_cfgs(cfgs, key, reboot_keywords)
-            # it can be a three-tuple (ufg, starting node, ending node) for program slicing
-            ufgs.append((ufg, ufg_entry_node, ufg_reboot_nodes))
+            if len(cfgs) > 0:
+                ending_program = cfgs[-1][0] 
+                reboot_keywords = path_dict[key][ending_program]["function"]["reboot"]                      
+                # build the ufgs
+                # also, pass the reboot lists to this function
+                ufg, ufg_entry_node, ufg_reboot_nodes = self.connect_cfgs(cfgs, key, reboot_keywords)
+                # it can be a three-tuple (ufg, starting node, ending node) for program slicing
+                ufgs.append((ufg, ufg_entry_node, ufg_reboot_nodes))
             
         return ufgs
 

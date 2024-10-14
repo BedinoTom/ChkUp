@@ -126,6 +126,8 @@ class Utils:
                         other_files.append(filepath)
                     
         files['html'] = html_files
+        files['htm'] = html_files
+        files['shtml'] = html_files
         files['js'] = js_files
         files['xml'] = xml_files
         files['asp'] = asp_files
